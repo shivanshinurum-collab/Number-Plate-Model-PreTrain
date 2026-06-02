@@ -90,17 +90,37 @@ class LicensePlateReader:
         return all_text
 
 if __name__ == "__main__":
-    IMAGE_PATH = "test/car1.png"
+    IMAGE_PATH = ["test/car1.png","test/car2.png","test/car3.png","test/car4.png","test/car5.png","test/bike1.png"]
     # Using the better named detector model
     MODEL_PATH = "license_plate_detector.pt"
+    # MODEL_PATH = "best.pt"
     
-    try:
-        reader = LicensePlateReader(model_path=MODEL_PATH)
-        texts = reader.read_plate(image_path=IMAGE_PATH)
+
+    for img in IMAGE_PATH:
+        try:
+            reader = LicensePlateReader(model_path=MODEL_PATH)
+            texts = reader.read_plate(image_path=img)
         
-        print("\n--- Final Results ---")
-        for idx, text in enumerate(texts):
-            print(f"Plate {idx + 1}: {text}")
+            print("\n--- Final Results ---")
+            for idx, text in enumerate(texts):
+                print(f"Plate {idx + 1}: {text}")
             
-    except Exception as e:
-        print(f"Error occurred: {e}")
+        except Exception as e:
+            print(f"Error occurred: {e}")
+
+
+# if __name__ == "__main__":
+#     IMAGE_PATH = "test/car1.png"
+#     # Using the better named detector model
+#     MODEL_PATH = "license_plate_detector.pt"
+    
+#     try:
+#         reader = LicensePlateReader(model_path=MODEL_PATH)
+#         texts = reader.read_plate(image_path=IMAGE_PATH)
+        
+#         print("\n--- Final Results ---")
+#         for idx, text in enumerate(texts):
+#             print(f"Plate {idx + 1}: {text}")
+            
+#     except Exception as e:
+#         print(f"Error occurred: {e}")
